@@ -5,28 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
 
-  <title>Widi Raspito Utomo — Proyek, Perangkat Lunak, dan Catatan Lapangan</title>
+  <title>Widi Raspito Utomo — Senior Project Manager, PMP®</title>
 
   <meta
     name="description"
-    content="Catatan Widi Raspito Utomo tentang memimpin proyek teknologi, membangun Project Desk, dan belajar dari orang-orang di lapangan."
+    content="Widi Raspito Utomo, Senior Project Manager, PMP®. Berpengalaman sejak 2007 dalam pengembangan perangkat lunak, kepemimpinan proyek, dan tata kelola teknologi lintas sektor."
   />
 
-  <!-- Terapkan pilihan tersimpan sebelum halaman tampil agar warna tidak berkedip. -->
+  <link rel="canonical" href="https://widiru83.github.io/" />
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    sizes="any"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='%23171717' stroke='%23525252' stroke-width='2'/%3E%3Cpath d='M10 19 L17 44 L26 26 L35 44 L43 19' fill='none' stroke='%23ff812e' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='51' cy='43' r='4' fill='%23ffffff'/%3E%3C/svg%3E"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:site_name" content="WidiRU." />
+  <meta
+    property="og:title"
+    content="Widi Raspito Utomo — Proyek, Teknologi, dan Catatan Lapangan"
+  />
+  <meta
+    property="og:description"
+    content="Dari menulis kode hingga memimpin proyek teknologi. Pengalaman, karya, dan catatan tentang membawa rencana menjadi layanan yang dipakai."
+  />
+  <meta property="og:url" content="https://widiru83.github.io/" />
+  <meta
+    property="og:image"
+    content="https://widiru83.github.io/widiru-share.png"
+  />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta
+    property="og:image:alt"
+    content="Widi Raspito Utomo, Senior Project Manager, PMP®. Saya mengurus proyek, bikin aplikasi, dan menulis."
+  />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:title"
+    content="Widi Raspito Utomo — Senior Project Manager, PMP®"
+  />
+  <meta
+    name="twitter:description"
+    content="Dari menulis kode hingga memimpin proyek teknologi. Pengalaman, karya, dan catatan dari lapangan."
+  />
+  <meta
+    name="twitter:image"
+    content="https://widiru83.github.io/widiru-share.png"
+  />
+  <meta
+    name="twitter:image:alt"
+    content="Widi Raspito Utomo. Saya mengurus proyek, bikin aplikasi, dan menulis."
+  />
+
   <script>
     try {
-      const saved = localStorage.getItem("widiru-theme");
+      const savedTheme = localStorage.getItem("widiru-theme");
 
-      if (saved === "black" || saved === "white") {
-        document.documentElement.dataset.theme = saved;
+      if (savedTheme === "black" || savedTheme === "white") {
+        document.documentElement.dataset.theme = savedTheme;
       }
     } catch {
-      // Jika penyimpanan dibatasi, halaman tetap mengikuti tema perangkat.
+      // Gunakan tema perangkat jika penyimpanan browser dibatasi.
     }
   </script>
 
   <style>
-    /* Tema White */
     :root {
       color-scheme: light;
       --bg: #ffffff;
@@ -42,7 +91,6 @@
       --mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
     }
 
-    /* Tema Black */
     :root[data-theme="black"] {
       color-scheme: dark;
       --bg: #101010;
@@ -53,7 +101,6 @@
       --accent: #ff9854;
     }
 
-    /* Sebelum pengunjung memilih, ikuti pengaturan perangkat. */
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme]) {
         color-scheme: dark;
@@ -66,34 +113,42 @@
       }
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font: 1rem/1.7 var(--body);
+      font: 1rem/1.75 var(--body);
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, p, dl, dd { margin: 0; }
+    h1, h2, h3, p, dl, dd {
+      margin: 0;
+    }
 
     a {
       color: inherit;
       text-underline-offset: 0.24em;
     }
 
-    a:hover { color: var(--accent); }
+    a:hover {
+      color: var(--accent);
+    }
 
     :focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 4px;
     }
 
-    [hidden] { display: none !important; }
+    [hidden] {
+      display: none !important;
+    }
 
     .wrap {
-      width: min(66rem, calc(100% - 2.5rem));
+      width: min(68rem, calc(100% - 2.5rem));
       margin-inline: auto;
     }
 
@@ -108,9 +163,10 @@
       color: var(--ink);
     }
 
-    .skip:focus { transform: none; }
+    .skip:focus {
+      transform: none;
+    }
 
-    /* Identitas, navigasi, dan pilihan tema */
     .topbar,
     .navigation,
     .actions,
@@ -122,7 +178,7 @@
     }
 
     .topbar {
-      gap: 0.8rem 2rem;
+      gap: 0.8rem 1.75rem;
       padding-block: 1.1rem;
       border-bottom: 1px solid var(--line);
     }
@@ -137,11 +193,13 @@
       text-decoration: none;
     }
 
-    .brand span { color: var(--accent); }
+    .brand span {
+      color: var(--accent);
+    }
 
     .navigation,
     .social {
-      gap: 0.3rem 1.25rem;
+      gap: 0.3rem 1.15rem;
     }
 
     .navigation a,
@@ -188,7 +246,6 @@
       color: var(--on-orange);
     }
 
-    /* Pembuka */
     .hero {
       padding-block: clamp(3.5rem, 8vw, 6.5rem);
       border-bottom: 1px solid var(--line);
@@ -207,17 +264,21 @@
     }
 
     h1 {
-      max-width: 18ch;
+      max-width: 20ch;
       margin: 0.85rem 0 1.4rem;
-      font-size: clamp(2.7rem, 6.8vw, 5.4rem);
-      line-height: 1.04;
+      font-size: clamp(2.7rem, 6.5vw, 5.2rem);
+      line-height: 1.06;
       letter-spacing: -0.055em;
     }
 
     .intro {
-      max-width: 62ch;
+      max-width: 66ch;
       color: var(--muted);
       font-size: clamp(1rem, 1.6vw, 1.15rem);
+    }
+
+    .intro + .intro {
+      margin-top: 0.9rem;
     }
 
     .actions {
@@ -226,7 +287,9 @@
     }
 
     .actions a,
-    .work a { font-weight: 650; }
+    .work a {
+      font-weight: 650;
+    }
 
     .primary {
       display: inline-block;
@@ -242,10 +305,9 @@
       text-decoration: underline;
     }
 
-    /* Isi */
     .section {
       display: grid;
-      grid-template-columns: minmax(10rem, 1fr) minmax(0, 2.2fr);
+      grid-template-columns: minmax(10rem, 1fr) minmax(0, 2.3fr);
       gap: 1.4rem 3rem;
       padding-block: clamp(2.5rem, 5.5vw, 4.75rem);
       border-bottom: 1px solid var(--line);
@@ -259,22 +321,41 @@
     }
 
     h3 {
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.55rem;
       font-size: 1.45rem;
-      line-height: 1.25;
+      line-height: 1.3;
       letter-spacing: -0.025em;
     }
 
+    .section-note {
+      max-width: 25ch;
+      margin-top: 0.85rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
     .entry + .entry {
-      margin-top: 1.4rem;
-      padding-top: 1.4rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
       border-top: 1px solid var(--line);
     }
 
     .entry p,
     .work p,
     .contact-copy,
-    dd { color: var(--muted); }
+    dd {
+      color: var(--muted);
+    }
+
+    .kind {
+      display: block;
+      margin-bottom: 0.55rem;
+    }
+
+    .current-role {
+      padding-left: 1.2rem;
+      border-left: 3px solid var(--orange);
+    }
 
     .works,
     .skills {
@@ -290,12 +371,9 @@
       background: var(--surface);
     }
 
-    .kind {
-      display: block;
-      margin-bottom: 0.55rem;
+    .work h3 {
+      font-size: 1.85rem;
     }
-
-    .work h3 { font-size: 1.85rem; }
 
     .work a {
       display: inline-block;
@@ -303,7 +381,10 @@
       color: var(--accent);
     }
 
-    dt { font-weight: 650; }
+    dt {
+      margin-bottom: 0.15rem;
+      font-weight: 650;
+    }
 
     .social {
       margin-top: 0.75rem;
@@ -318,66 +399,35 @@
       font-size: 0.85rem;
     }
 
-    @media (max-width: 660px) {
+    @media (max-width: 760px) {
       .topbar {
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 0.55rem 1rem;
       }
 
-      .brand { grid-area: 1 / 1; }
+      .brand {
+        grid-area: 1 / 1;
+      }
 
       .theme-picker {
         grid-area: 1 / 2;
         justify-self: end;
       }
 
-      .navigation { grid-area: 2 / 1 / 3 / -1; }
-      .section { grid-template-columns: 1fr; }
+      .navigation {
+        grid-area: 2 / 1 / 3 / -1;
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+      }
+
+      .section-note {
+        max-width: 55ch;
+      }
     }
   </style>
-
-<!-- Ikon tab WidiRU. -->
-<link
-  rel="icon"
-  type="image/svg+xml"
-  sizes="any"
-  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='%23171717' stroke='%23525252' stroke-width='2'/%3E%3Cpath d='M10 19 L17 44 L26 26 L35 44 L43 19' fill='none' stroke='%23ff812e' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='51' cy='43' r='4' fill='%23ffffff'/%3E%3C/svg%3E"
-/>
-
-<!-- Pratinjau saat tautan portofolio dibagikan -->
-<meta property="og:type" content="website" />
-<meta property="og:locale" content="id_ID" />
-<meta property="og:site_name" content="WidiRU." />
-<meta property="og:title" content="Widi Raspito Utomo — Catatan dari Lapangan" />
-<meta
-  property="og:description"
-  content="Saya Widi. Di sini saya berbagi cerita tentang memimpin proyek teknologi, membangun Project Desk, dan belajar dari tim di lapangan."
-/>
-<meta property="og:url" content="https://widiru83.github.io/" />
-<meta property="og:image" content="https://widiru83.github.io/widiru-share.png" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta
-  property="og:image:alt"
-  content="Widi Raspito Utomo, Senior Project Manager, PMP®. Saya mengurus proyek, bikin aplikasi, dan menulis. Kartu hitam dengan monogram W oranye."
-/>
-
-<!-- Tampilan kartu besar di X -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Widi Raspito Utomo — Catatan dari Lapangan" />
-<meta
-  name="twitter:description"
-  content="Tentang memimpin proyek teknologi, membangun Project Desk, dan belajar dari tim di lapangan."
-/>
-<meta name="twitter:image" content="https://widiru83.github.io/widiru-share.png" />
-<meta
-  name="twitter:image:alt"
-  content="Widi Raspito Utomo, Senior Project Manager, PMP®. Saya mengurus proyek, bikin aplikasi, dan menulis."
-/>
-
-  
 </head>
 
 <body id="atas">
@@ -389,36 +439,162 @@
     </a>
 
     <nav class="navigation" aria-label="Navigasi utama">
+      <a href="#pengalaman">Pengalaman</a>
       <a href="#fokus">Cara kerja</a>
       <a href="#karya">Karya</a>
       <a href="#kontak">Kontak</a>
     </nav>
 
-    <div class="theme-picker" role="group" aria-label="Pilih tema tampilan" hidden>
-      <button class="theme-option" type="button"
-              data-choice="black" aria-pressed="false">Black</button>
-      <button class="theme-option" type="button"
-              data-choice="white" aria-pressed="false">White</button>
+    <div
+      class="theme-picker"
+      role="group"
+      aria-label="Pilih tema tampilan"
+      hidden
+    >
+      <button
+        class="theme-option"
+        type="button"
+        data-choice="black"
+        aria-pressed="false"
+      >Black</button>
+
+      <button
+        class="theme-option"
+        type="button"
+        data-choice="white"
+        aria-pressed="false"
+      >White</button>
     </div>
   </header>
 
   <main class="wrap" id="utama">
     <section class="hero" aria-labelledby="judul-utama">
-      <p class="byline">Widi Raspito Utomo · Senior Project Manager, PMP®</p>
+      <p class="byline">
+        Widi Raspito Utomo · Senior Project Manager, PMP®
+      </p>
 
-      <h1 id="judul-utama">Saya Widi. Sehari-hari saya mengurus proyek teknologi.</h1>
+      <h1 id="judul-utama">
+        Dari menulis kode hingga memimpin proyek teknologi.
+      </h1>
 
       <p class="intro">
-        Saya mulai dari rekayasa perangkat lunak pada 2007. Sekarang saya
-        lebih sering duduk bersama tim dan pengguna untuk mencari tahu apa
-        yang perlu dibereskan dulu. Di sela itu, saya masih senang bikin
-        aplikasi sendiri dan menulis tentang hal-hal yang saya pelajari
-        di lapangan.
+        Saya Widi. Sejak 2007, perjalanan saya bergerak dari pengembangan
+        perangkat lunak ke kepemimpinan tim dan tata kelola proyek.
+        Saya pernah menangani kebutuhan perbankan, layanan keuangan,
+        telekomunikasi, logistik, hingga layanan publik berskala nasional.
+      </p>
+
+      <p class="intro">
+        Latar belakang teknis membantu saya memahami pekerjaan tim,
+        sementara pengalaman memimpin proyek mengajarkan kapan perlu
+        membahas detail dan kapan sebuah keputusan harus segera diambil.
+        Di sela pekerjaan, saya membangun aplikasi sendiri dan menulis
+        catatan dari lapangan.
       </p>
 
       <div class="actions">
-        <a class="primary" href="#karya">Lihat karya saya</a>
-        <a href="https://medium.com/@widi-raspito">Baca tulisan di Medium</a>
+        <a class="primary" href="#pengalaman">Kenali pengalaman saya</a>
+        <a href="#karya">Lihat karya saya →</a>
+      </div>
+    </section>
+
+    <section
+      class="section"
+      id="pengalaman"
+      aria-labelledby="judul-pengalaman"
+    >
+      <div>
+        <h2 id="judul-pengalaman">Pengalaman</h2>
+        <p class="section-note">
+          Dari memahami sistem di level kode hingga menyatukan kebutuhan
+          bisnis, tim, dan operasional.
+        </p>
+      </div>
+
+      <div>
+        <article class="entry current-role">
+          <span class="kind">Saat ini · Layanan publik nasional</span>
+          <h3>Senior Project Manager — SIPGN</h3>
+          <p>
+            Memimpin pengelolaan proyek SIPGN untuk mendukung program
+            Makan Bergizi Gratis. Mengarahkan prioritas pengembangan
+            dan pemeliharaan aplikasi, mengoordinasikan integrasi sistem
+            serta kesiapan infrastruktur, dan menyelaraskan pekerjaan tim
+            dengan kebutuhan pengguna. Fokus saya menjaga kejelasan
+            keputusan, kesiapan rilis, dan tindak lanjut kendala operasional.
+          </p>
+        </article>
+
+        <article class="entry">
+          <span class="kind">Perbankan &amp; teknologi enterprise</span>
+          <h3>Head of Project Management</h3>
+          <p>
+            Memimpin pengelolaan sejumlah proyek digital banking,
+            keamanan TI, dan integrasi sistem. Menyelaraskan prioritas,
+            kapasitas tim, risiko, serta ekspektasi pemangku kepentingan.
+            Cakupannya mencakup layanan transaksi digital, autentikasi
+            pengguna, dan penguatan keamanan infrastruktur perbankan.
+          </p>
+        </article>
+
+        <article class="entry">
+          <span class="kind">Layanan investasi digital</span>
+          <h3>Technical Project Manager &amp; Scrum Master</h3>
+          <p>
+            Mengelola perencanaan dan pelaksanaan pengembangan produk
+            digital, sekaligus mendampingi tim menjalankan Scrum.
+            Menjembatani kebutuhan bisnis dengan pekerjaan teknis,
+            membantu menyelesaikan hambatan, dan menjaga agar hasil
+            setiap iterasi bisa ditinjau bersama pengguna.
+          </p>
+        </article>
+
+        <article class="entry">
+          <span class="kind">Produk digital &amp; integrasi API</span>
+          <h3>Senior Product Manager</h3>
+          <p>
+            Mengelola kebutuhan produk dan implementasi API e-Meterai
+            untuk pengguna lintas sektor. Menerjemahkan kebutuhan pelanggan
+            menjadi prioritas teknis, mengoordinasikan tim dan mitra,
+            serta mengawal kesiapan integrasi hingga layanan digunakan.
+          </p>
+        </article>
+
+        <article class="entry">
+          <span class="kind">Proses bisnis &amp; keamanan perbankan</span>
+          <h3>Project Manager</h3>
+          <p>
+            Menangani pembaruan proses penagihan kredit perumahan dan
+            integrasinya dengan berbagai sistem pendukung. Dalam penugasan
+            lain, mengelola penerapan keamanan perangkat, perlindungan data,
+            dan peningkatan infrastruktur. Mengawal perubahan bersama tim
+            bisnis, teknis, serta operasional agar implementasinya siap
+            dijalankan.
+          </p>
+        </article>
+
+        <article class="entry">
+          <span class="kind">Logistik, telekomunikasi &amp; pengelolaan aset</span>
+          <h3>Project Manager &amp; Agile Project Manager</h3>
+          <p>
+            Memimpin pengembangan aplikasi operasional, layanan pelanggan,
+            dan pengelolaan aset. Mengatur lingkup, jadwal, biaya, serta
+            koordinasi tim dengan perhatian pada kebutuhan petugas di
+            lapangan, mulai dari kurir hingga tim pemeliharaan.
+          </p>
+        </article>
+
+        <article class="entry">
+          <span class="kind">Fondasi karier · Software engineering</span>
+          <h3>Programmer, Senior Programmer &amp; Technical Leader</h3>
+          <p>
+            Membangun dan memelihara aplikasi desktop, web, serta integrasi
+            layanan untuk kebutuhan keuangan, telekomunikasi, dan operasional.
+            Pengalaman menulis kode, menangani gangguan, dan mendampingi
+            rilis menjadi bekal saya dalam menilai estimasi serta memahami
+            konsekuensi keputusan teknis.
+          </p>
+        </article>
       </div>
     </section>
 
@@ -429,31 +605,30 @@
         <article class="entry">
           <h3>Mulai dari yang mengganjal</h3>
           <p>
-            Kalau proyek tertahan, saya biasanya bertanya, “Tim sedang
-            menunggu apa?” Kadang ada masalah teknis. Kadang dua orang
-            ternyata saling menunggu keputusan. Jawabannya menentukan
-            siapa yang perlu diajak duduk bersama.
+            Kalau progres tertahan, saya biasanya bertanya, “Tim sedang
+            menunggu apa?” Kadang ada masalah teknis. Kadang keputusan
+            belum jelas atau dua pihak saling menunggu. Jawabannya
+            menentukan apa yang perlu dibereskan lebih dulu.
           </p>
         </article>
 
         <article class="entry">
-          <h3>Ikuti sampai dipakai</h3>
+          <h3>Pikirkan hari setelah rilis</h3>
           <p>
-            Dari sistem perbankan sampai layanan berskala nasional, saya
-            selalu penasaran dengan hari setelah rilis. Kalau transaksi
-            tersendat pagi-pagi, apakah petugas tahu harus mengecek ke mana?
-            Pertanyaan seperti itu ikut menentukan apa yang perlu kami
-            siapkan sebelum sistem digunakan.
+            Siapa yang menerima laporan kendala? Bagaimana pengguna
+            mendapat bantuan? Apa yang perlu dipantau oleh tim operasional?
+            Pertanyaan seperti ini saya bawa sejak perencanaan, supaya
+            layanan punya dukungan yang siap ketika mulai digunakan.
           </p>
         </article>
 
         <article class="entry">
-          <h3>Sisakan ruang untuk tim</h3>
+          <h3>Beri tim ruang untuk mengambil keputusan</h3>
           <p>
-            Saat membagi pekerjaan, saya ingin tim tahu hasil yang dituju,
-            keputusan yang bisa mereka ambil sendiri, dan kapan kami perlu
-            duduk bersama lagi. Dari pengalaman itu juga saya mulai menulis
-            tentang delegasi.
+            Saya berusaha memperjelas hasil yang dituju, batas kewenangan,
+            dan kapan tim perlu melibatkan saya. Dengan begitu, pekerjaan
+            bisa bergerak tanpa setiap keputusan harus kembali ke meja
+            manajer.
           </p>
         </article>
       </div>
@@ -464,27 +639,28 @@
 
       <div class="works">
         <article class="work">
-          <span class="kind">Aplikasi Project Management · Widiru Studio</span>
+          <span class="kind">Aplikasi desktop · Widiru Studio</span>
           <h3 lang="en">Project Desk</h3>
           <p>
-            Saya ingin bisa membuka jadwal, risiko, dan biaya proyek dalam
-            satu tempat, termasuk saat sedang offline. Dari kebutuhan itu
-            saya mengembangkan Project Desk. Datanya tersimpan di perangkat
-            sendiri dengan SQLite. Saya bisa melihat pekerjaan yang saling
-            bergantung lewat Gantt dan membandingkan rencana dengan realisasi
-            lewat Kurva S.
+            Berangkat dari kebutuhan mengelola jadwal, risiko, dan biaya
+            proyek dalam satu tempat. Project Desk menyimpan data di
+            perangkat sendiri dengan SQLite dan mendukung pekerjaan
+            secara offline. Gantt membantu melihat hubungan antarpekerjaan,
+            sementara Kurva S membantu membaca rencana dan realisasinya.
           </p>
-          <a href="https://widiru83.github.io/project-desk-demo/">Buka Aplikasi Demo →</a>
+          <a href="https://github.com/widiru83">
+            Buka profil GitHub saya →
+          </a>
         </article>
 
         <article class="work">
           <span class="kind">E-book · Kepemimpinan tim</span>
           <h3 lang="en">The Delegation Playbook</h3>
           <p>
-            Pekerjaan sudah dibagi, tapi kenapa semua keputusan masih kembali
-            ke meja kita? Buku ini berangkat dari pertanyaan itu. Saya membahas
-            cara menyepakati hasil, memberi ruang keputusan, dan memeriksa
-            kualitas tanpa harus ikut mengerjakan semuanya.
+            Pekerjaan sudah dibagi, tapi kenapa semua keputusan masih
+            kembali ke meja kita? Buku ini membahas cara menyepakati
+            hasil, memberi ruang keputusan, dan memeriksa kualitas
+            tanpa harus ikut mengerjakan semuanya.
           </p>
         </article>
       </div>
@@ -495,16 +671,35 @@
 
       <dl class="skills">
         <div>
-          <dt>Manajemen proyek &amp; keamanan</dt>
-          <dd>PMP® · Scrum · Google Cybersecurity</dd>
+          <dt>Sertifikasi</dt>
+          <dd>
+            Project Management Professional (PMP®) · Certified Scrum Master ·
+            Scrum Foundation Professional Certificate · Google Cybersecurity
+          </dd>
         </div>
+
         <div>
-          <dt>Pengembangan perangkat lunak</dt>
-          <dd>Java · Go · Python · JavaScript · Electron</dd>
+          <dt>Pengelolaan proyek &amp; tim</dt>
+          <dd>
+            Tata kelola proyek · Pengelolaan risiko · Koordinasi lintas fungsi ·
+            SDLC · Agile &amp; Scrum
+          </dd>
         </div>
+
         <div>
-          <dt>Basis data &amp; lingkungan kerja</dt>
-          <dd>PostgreSQL · MySQL · Oracle · SQLite · Linux · Shell scripting</dd>
+          <dt>Fondasi teknis</dt>
+          <dd>
+            Java · JavaScript · Android Native · Integrasi API ·
+            MySQL · PostgreSQL · Linux
+          </dd>
+        </div>
+
+        <div>
+          <dt>Pengembangan karya mandiri</dt>
+          <dd>
+            Aplikasi desktop · Electron · SQLite ·
+            Penulisan tentang proyek dan kepemimpinan
+          </dd>
         </div>
       </dl>
     </section>
@@ -514,13 +709,16 @@
 
       <div>
         <p class="contact-copy">
-          Kalau sedang menghadapi persoalan proyek yang mirip, atau sudah
-          mencoba Project Desk dan punya masukan, sapa saya di LinkedIn.
-          Saya juga berbagi tulisan di Medium dan catatan singkat di Threads.
+          Kalau ada kebutuhan memimpin proyek teknologi, menata cara kerja
+          tim, atau bertukar pengalaman tentang persoalan di lapangan,
+          sapa saya di LinkedIn. Masukan untuk Project Desk juga selalu
+          saya tunggu.
         </p>
 
         <nav class="social" aria-label="Profil Widi">
-          <a href="https://www.linkedin.com/in/widi-raspito-utomo-s-kom-pmp%C2%AE-8b479a31/">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/widi-raspito-utomo-s-kom-pmp%C2%AE-8b479a31/">
+            LinkedIn
+          </a>
           <a href="https://medium.com/@widi-raspito">Medium</a>
           <a href="https://www.threads.com/@widiraspitoutomo">Threads</a>
           <a href="https://github.com/widiru83">GitHub</a>
@@ -542,30 +740,50 @@
       const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
       function updateButtons() {
-        const active = root.dataset.theme || (systemTheme.matches ? "black" : "white");
+        const activeTheme =
+          root.dataset.theme || (systemTheme.matches ? "black" : "white");
 
         for (const button of buttons) {
-          button.setAttribute("aria-pressed", String(button.dataset.choice === active));
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.choice === activeTheme)
+          );
         }
       }
 
       for (const button of buttons) {
         button.addEventListener("click", () => {
-          const choice = button.dataset.choice;
-          root.dataset.theme = choice;
+          const selectedTheme = button.dataset.choice;
+
+          root.dataset.theme = selectedTheme;
           updateButtons();
 
           try {
-            localStorage.setItem("widiru-theme", choice);
+            localStorage.setItem("widiru-theme", selectedTheme);
           } catch {
-            // Pilihan tetap berlaku di halaman ini jika penyimpanan dibatasi.
+            // Tema tetap berlaku selama halaman ini terbuka.
           }
         });
       }
 
+      window.addEventListener("storage", (event) => {
+        if (event.key !== "widiru-theme" && event.key !== null) {
+          return;
+        }
+
+        if (event.newValue === "black" || event.newValue === "white") {
+          root.dataset.theme = event.newValue;
+        } else {
+          delete root.dataset.theme;
+        }
+
+        updateButtons();
+      });
+
+      systemTheme.addEventListener("change", updateButtons);
+
       updateButtons();
       picker.hidden = false;
-      systemTheme.addEventListener("change", updateButtons);
     })();
   </script>
 </body>
