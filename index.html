@@ -2,360 +2,571 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Widi Raspito Utomo — Senior Project Manager & Systems Architect</title>
-  <meta name="description" content="Portofolio profesional, tata kelola proyek strategis, perangkat lunak mandiri, dan tulisan analitis oleh Widi Raspito Utomo." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+
+  <title>Widi Raspito Utomo — Proyek, Perangkat Lunak, dan Catatan Lapangan</title>
+
+  <meta
+    name="description"
+    content="Catatan Widi Raspito Utomo tentang memimpin proyek teknologi, membangun Project Desk, dan belajar dari orang-orang di lapangan."
+  />
+
+  <!-- Terapkan pilihan tersimpan sebelum halaman tampil agar warna tidak berkedip. -->
+  <script>
+    try {
+      const saved = localStorage.getItem("widiru-theme");
+
+      if (saved === "black" || saved === "white") {
+        document.documentElement.dataset.theme = saved;
+      }
+    } catch {
+      // Jika penyimpanan dibatasi, halaman tetap mengikuti tema perangkat.
+    }
+  </script>
+
   <style>
+    /* Tema White */
     :root {
+      color-scheme: light;
       --bg: #ffffff;
-      --surface: #f8fafc;
-      --border: #e2e8f0;
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --accent: #0284c7;
-      --accent-hover: #0369a1;
-      --badge-bg: #e0f2fe;
-      --badge-text: #0369a1;
+      --surface: #f6f6f5;
+      --ink: #191919;
+      --muted: #565656;
+      --line: #d9d9d6;
+      --accent: #ad4000;
+      --orange: #ff812e;
+      --on-orange: #19120d;
+      --display: Georgia, "Times New Roman", serif;
+      --body: system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
     }
 
+    /* Tema Black */
+    :root[data-theme="black"] {
+      color-scheme: dark;
+      --bg: #101010;
+      --surface: #1a1a1a;
+      --ink: #f4f3f0;
+      --muted: #b9b8b5;
+      --line: #393939;
+      --accent: #ff9854;
+    }
+
+    /* Sebelum pengunjung memilih, ikuti pengaturan perangkat. */
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b0f19;
-        --surface: #111827;
-        --border: #1e293b;
-        --text-primary: #f8fafc;
-        --text-secondary: #94a3b8;
-        --accent: #38bdf8;
-        --accent-hover: #7dd3fc;
-        --badge-bg: #0c4a6e;
-        --badge-text: #bae6fd;
+      :root:not([data-theme]) {
+        color-scheme: dark;
+        --bg: #101010;
+        --surface: #1a1a1a;
+        --ink: #f4f3f0;
+        --muted: #b9b8b5;
+        --line: #393939;
+        --accent: #ff9854;
       }
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text-primary);
-      line-height: 1.65;
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 1rem/1.7 var(--body);
       -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 3.5rem 1.5rem;
+    h1, h2, h3, p, dl, dd { margin: 0; }
+
+    a {
+      color: inherit;
+      text-underline-offset: 0.24em;
     }
 
-    /* Navigation */
-    header {
+    a:hover { color: var(--accent); }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    [hidden] { display: none !important; }
+
+    .wrap {
+      width: min(66rem, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .skip {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 2;
+      transform: translateY(-180%);
+      padding: 0.5rem 1rem;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .skip:focus { transform: none; }
+
+    /* Identitas, navigasi, dan pilihan tema */
+    .topbar,
+    .navigation,
+    .actions,
+    .social,
+    .footer-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 4rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .topbar {
+      gap: 0.8rem 2rem;
+      padding-block: 1.1rem;
+      border-bottom: 1px solid var(--line);
     }
 
     .brand {
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
+      margin-right: auto;
+      color: var(--ink);
+      font-size: 1.55rem;
+      font-weight: 780;
+      line-height: 1;
+      letter-spacing: -0.08em;
       text-decoration: none;
     }
 
-    nav a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin-left: 1.5rem;
-      transition: color 0.2s;
+    .brand span { color: var(--accent); }
+
+    .navigation,
+    .social {
+      gap: 0.3rem 1.25rem;
     }
 
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    /* Hero Section */
-    .hero {
-      margin-bottom: 4rem;
-    }
-
-    .eyebrow {
+    .navigation a,
+    .social a {
       display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--badge-text);
-      background-color: var(--badge-bg);
-      padding: 0.25rem 0.65rem;
-      border-radius: 4px;
-      margin-bottom: 1rem;
+      padding-block: 0.4rem;
+      font-size: 0.91rem;
+    }
+
+    .navigation a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .navigation a:hover {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+    }
+
+    .theme-picker {
+      display: inline-flex;
+      gap: 0.2rem;
+      padding: 0.2rem;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      background: var(--surface);
+    }
+
+    .theme-option {
+      min-height: 2.25rem;
+      min-width: 4rem;
+      padding: 0.3rem 0.8rem;
+      border: 0;
+      border-radius: 99px;
+      background: transparent;
+      color: var(--muted);
+      font: 650 0.82rem/1 var(--body);
+      cursor: pointer;
+    }
+
+    .theme-option[aria-pressed="true"] {
+      background: var(--orange);
+      color: var(--on-orange);
+    }
+
+    /* Pembuka */
+    .hero {
+      padding-block: clamp(3.5rem, 8vw, 6.5rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .byline,
+    .kind {
+      color: var(--accent);
+      font: 650 0.8rem/1.6 var(--mono);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      text-wrap: balance;
     }
 
     h1 {
-      font-size: 2.35rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 1rem;
+      max-width: 18ch;
+      margin: 0.85rem 0 1.4rem;
+      font-size: clamp(2.7rem, 6.8vw, 5.4rem);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
     }
 
-    .subtitle {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 660px;
-      margin-bottom: 1.75rem;
+    .intro {
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
     }
 
-    .cta-group {
-      display: flex;
-      gap: 0.85rem;
-      flex-wrap: wrap;
+    .actions {
+      gap: 0.75rem 1.4rem;
+      margin-top: 1.65rem;
     }
 
-    .btn {
+    .actions a,
+    .work a { font-weight: 650; }
+
+    .primary {
       display: inline-block;
-      padding: 0.65rem 1.25rem;
-      border-radius: 6px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .btn-primary {
-      background-color: var(--accent);
-      color: #ffffff;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .btn-primary {
-        color: #0b0f19;
-      }
-    }
-
-    .btn-primary:hover {
-      background-color: var(--accent-hover);
-    }
-
-    .btn-secondary {
-      background-color: var(--surface);
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent);
-    }
-
-    /* Sections */
-    section {
-      margin-bottom: 4rem;
-    }
-
-    h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .card {
-      background-color: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .card-tag {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.4rem;
-      display: block;
-    }
-
-    .card h3 {
-      font-size: 1.08rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      font-size: 0.92rem;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-    }
-
-    .card a {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--accent);
+      padding: 0.6rem 1.05rem;
+      border-radius: 0.35rem;
+      background: var(--orange);
+      color: var(--on-orange);
       text-decoration: none;
     }
 
-    .card a:hover {
+    .primary:hover {
+      color: var(--on-orange);
       text-decoration: underline;
     }
 
-    /* Tech Stack Pills */
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    /* Isi */
+    .section {
+      display: grid;
+      grid-template-columns: minmax(10rem, 1fr) minmax(0, 2.2fr);
+      gap: 1.4rem 3rem;
+      padding-block: clamp(2.5rem, 5.5vw, 4.75rem);
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 1rem;
     }
 
-    .pill {
-      font-size: 0.82rem;
-      padding: 0.35rem 0.75rem;
-      background-color: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--text-secondary);
+    h2 {
+      font-size: clamp(1.8rem, 3.2vw, 2.55rem);
+      line-height: 1.15;
+      letter-spacing: -0.04em;
     }
 
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border);
-      padding-top: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+    h3 {
+      margin-bottom: 0.45rem;
+      font-size: 1.45rem;
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+    }
+
+    .entry + .entry {
+      margin-top: 1.4rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .entry p,
+    .work p,
+    .contact-copy,
+    dd { color: var(--muted); }
+
+    .works,
+    .skills {
+      display: grid;
       gap: 1rem;
-      font-size: 0.88rem;
-      color: var(--text-secondary);
     }
 
-    .social-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      margin-left: 1.25rem;
+    .work {
+      padding: clamp(1.2rem, 3vw, 1.85rem);
+      border: 1px solid var(--line);
+      border-inline-start: 3px solid var(--orange);
+      border-radius: 0.35rem;
+      background: var(--surface);
     }
 
-    .social-links a:hover {
+    .kind {
+      display: block;
+      margin-bottom: 0.55rem;
+    }
+
+    .work h3 { font-size: 1.85rem; }
+
+    .work a {
+      display: inline-block;
+      margin-top: 0.9rem;
       color: var(--accent);
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 1.85rem; }
-      header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-      nav a { margin-left: 0; margin-right: 1.25rem; }
-      .social-links a { margin-left: 0; margin-right: 1.25rem; }
+    dt { font-weight: 650; }
+
+    .social {
+      margin-top: 0.75rem;
+      color: var(--accent);
+    }
+
+    .footer-row {
+      justify-content: space-between;
+      gap: 0.6rem 1rem;
+      padding-block: 1.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 660px) {
+      .topbar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.55rem 1rem;
+      }
+
+      .brand { grid-area: 1 / 1; }
+
+      .theme-picker {
+        grid-area: 1 / 2;
+        justify-self: end;
+      }
+
+      .navigation { grid-area: 2 / 1 / 3 / -1; }
+      .section { grid-template-columns: 1fr; }
     }
   </style>
+
+<!-- Ikon tab WidiRU. -->
+<link
+  rel="icon"
+  type="image/svg+xml"
+  sizes="any"
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='%23171717' stroke='%23525252' stroke-width='2'/%3E%3Cpath d='M10 19 L17 44 L26 26 L35 44 L43 19' fill='none' stroke='%23ff812e' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='51' cy='43' r='4' fill='%23ffffff'/%3E%3C/svg%3E"
+/>
+
+<!-- Pratinjau saat tautan portofolio dibagikan -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="id_ID" />
+<meta property="og:site_name" content="WidiRU." />
+<meta property="og:title" content="Widi Raspito Utomo — Catatan dari Lapangan" />
+<meta
+  property="og:description"
+  content="Saya Widi. Di sini saya berbagi cerita tentang memimpin proyek teknologi, membangun Project Desk, dan belajar dari tim di lapangan."
+/>
+<meta property="og:url" content="https://widiru83.github.io/" />
+<meta property="og:image" content="https://widiru83.github.io/widiru-share.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta
+  property="og:image:alt"
+  content="Widi Raspito Utomo, Senior Project Manager, PMP®. Saya mengurus proyek, bikin aplikasi, dan menulis. Kartu hitam dengan monogram W oranye."
+/>
+
+<!-- Tampilan kartu besar di X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Widi Raspito Utomo — Catatan dari Lapangan" />
+<meta
+  name="twitter:description"
+  content="Tentang memimpin proyek teknologi, membangun Project Desk, dan belajar dari tim di lapangan."
+/>
+<meta name="twitter:image" content="https://widiru83.github.io/widiru-share.png" />
+<meta
+  name="twitter:image:alt"
+  content="Widi Raspito Utomo, Senior Project Manager, PMP®. Saya mengurus proyek, bikin aplikasi, dan menulis."
+/>
+
+  
 </head>
-<body>
-  <div class="container">
-    <header>
-      <a href="#" class="brand">WidiRU.</a>
-      <nav>
-        <a href="#fokus">Fokus</a>
-        <a href="#karya">Karya & Publikasi</a>
-        <a href="#kontak">Kontak</a>
-      </nav>
-    </header>
 
-    <main>
-      <section class="hero">
-        <span class="eyebrow">PMP® · Systems Thinking · Software Engineering</span>
-        <h1>Widi Raspito Utomo</h1>
-        <p class="subtitle">
-          Senior Project Manager dengan latar belakang rekayasa perangkat lunak sejak 2007. Memimpin tata kelola pengiriman sistem berskala nasional, merancang arsitektur aplikasi mandiri, serta menulis esai tentang kepemimpinan dan psikologi organisasi.
-        </p>
-        <div class="cta-group">
-          <a href="#karya" class="btn btn-primary">Lihat Karya & Rilis</a>
-          <a href="https://github.com/widiru83" target="_blank" rel="noopener" class="btn btn-secondary">Profil GitHub</a>
-        </div>
-      </section>
+<body id="atas">
+  <a class="skip" href="#utama">Langsung ke isi</a>
 
-      <section id="fokus">
-        <h2>Pilar Utama</h2>
-        <div class="grid">
-          <div class="card">
-            <span class="card-tag">Governance & Delivery</span>
-            <h3>Enterprise Program Management</h3>
-            <p>Tata kelola pengiriman sistem skala nasional, manajemen risiko berbasis PMBOK 8, Scrum, dan integrasi layanan terkelola.</p>
-          </div>
-          <div class="card">
-            <span class="card-tag">Engineering</span>
-            <h3>Portable Software & Systems</h3>
-            <p>Pengembangan aplikasi lintas platform (Electron.js, SQLite) serta fondasi sistem finansial, pembayaran, dan keamanan siber.</p>
-          </div>
-          <div class="card">
-            <span class="card-tag">Widiru Studio</span>
-            <h3>Writing & Advisory</h3>
-            <p>Esai reflektif mengenai arsitektur sistem, kepemimpinan rekayasa perangkat lunak, delegasi tim, dan perencanaan strategis.</p>
-          </div>
-        </div>
-      </section>
+  <header class="wrap topbar">
+    <a class="brand" href="#atas" aria-label="WidiRU, kembali ke atas">
+      WidiRU<span>.</span>
+    </a>
 
-      <section id="karya">
-        <h2>Karya & Publikasi Pilihan</h2>
-        <div class="grid">
-          <div class="card">
-            <span class="card-tag">E-Book</span>
-            <h3>The Delegation Playbook</h3>
-            <p>Panduan praktis untuk pemimpin teknis dan manajer proyek dalam membangun otonomi tim tanpa kehilangan kendali kualitas.</p>
-            <a href="#" target="_blank" rel="noopener">Baca Detail →</a>
-          </div>
-          <div class="card">
-            <span class="card-tag">Open Source / Desktop App</span>
-            <h3>Project Desk</h3>
-            <p>Aplikasi manajemen proyek mandiri dan portabel berbasis SQLite untuk Windows, macOS, dan Linux tanpa ketergantungan cloud.</p>
-            <a href="https://github.com/widiru83" target="_blank" rel="noopener">Lihat di GitHub →</a>
-          </div>
-        </div>
-      </section>
+    <nav class="navigation" aria-label="Navigasi utama">
+      <a href="#fokus">Cara kerja</a>
+      <a href="#karya">Karya</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
 
-      <section>
-        <h2>Spektrum Teknis & Sertifikasi</h2>
-        <div class="pills">
-          <span class="pill">PMP® Certified</span>
-          <span class="pill">Scrum</span>
-          <span class="pill">Google Cybersecurity</span>
-          <span class="pill">Java / Golang / Python</span>
-          <span class="pill">JavaScript / Electron.js</span>
-          <span class="pill">PostgreSQL / MySQL / Oracle / SQLite</span>
-          <span class="pill">Linux & Shell Scripting</span>
-        </div>
-      </section>
-    </main>
+    <div class="theme-picker" role="group" aria-label="Pilih tema tampilan" hidden>
+      <button class="theme-option" type="button"
+              data-choice="black" aria-pressed="false">Black</button>
+      <button class="theme-option" type="button"
+              data-choice="white" aria-pressed="false">White</button>
+    </div>
+  </header>
 
-    <footer id="kontak">
-      <span>© 2026 Widi Raspito Utomo · Widiru Studio</span>
-      <div class="social-links">
-        <a href="https://github.com/widiru83" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.threads.net" target="_blank" rel="noopener">Threads</a>
-        <a href="https://medium.com" target="_blank" rel="noopener">Medium</a>
+  <main class="wrap" id="utama">
+    <section class="hero" aria-labelledby="judul-utama">
+      <p class="byline">Widi Raspito Utomo · Senior Project Manager, PMP®</p>
+
+      <h1 id="judul-utama">Saya Widi. Sehari-hari saya mengurus proyek teknologi.</h1>
+
+      <p class="intro">
+        Saya mulai dari rekayasa perangkat lunak pada 2007. Sekarang saya
+        lebih sering duduk bersama tim dan pengguna untuk mencari tahu apa
+        yang perlu dibereskan dulu. Di sela itu, saya masih senang bikin
+        aplikasi sendiri dan menulis tentang hal-hal yang saya pelajari
+        di lapangan.
+      </p>
+
+      <div class="actions">
+        <a class="primary" href="#karya">Lihat karya saya</a>
+        <a href="https://medium.com/@widi-raspito">Baca tulisan di Medium</a>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <section class="section" id="fokus" aria-labelledby="judul-fokus">
+      <h2 id="judul-fokus">Cara saya bekerja</h2>
+
+      <div>
+        <article class="entry">
+          <h3>Mulai dari yang mengganjal</h3>
+          <p>
+            Kalau proyek tertahan, saya biasanya bertanya, “Tim sedang
+            menunggu apa?” Kadang ada masalah teknis. Kadang dua orang
+            ternyata saling menunggu keputusan. Jawabannya menentukan
+            siapa yang perlu diajak duduk bersama.
+          </p>
+        </article>
+
+        <article class="entry">
+          <h3>Ikuti sampai dipakai</h3>
+          <p>
+            Dari sistem perbankan sampai layanan berskala nasional, saya
+            selalu penasaran dengan hari setelah rilis. Kalau transaksi
+            tersendat pagi-pagi, apakah petugas tahu harus mengecek ke mana?
+            Pertanyaan seperti itu ikut menentukan apa yang perlu kami
+            siapkan sebelum sistem digunakan.
+          </p>
+        </article>
+
+        <article class="entry">
+          <h3>Sisakan ruang untuk tim</h3>
+          <p>
+            Saat membagi pekerjaan, saya ingin tim tahu hasil yang dituju,
+            keputusan yang bisa mereka ambil sendiri, dan kapan kami perlu
+            duduk bersama lagi. Dari pengalaman itu juga saya mulai menulis
+            tentang delegasi.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="karya" aria-labelledby="judul-karya">
+      <h2 id="judul-karya">Yang saya buat</h2>
+
+      <div class="works">
+        <article class="work">
+          <span class="kind">Aplikasi desktop · Widiru Studio</span>
+          <h3 lang="en">Project Desk</h3>
+          <p>
+            Saya ingin bisa membuka jadwal, risiko, dan biaya proyek dalam
+            satu tempat, termasuk saat sedang offline. Dari kebutuhan itu
+            saya mengembangkan Project Desk. Datanya tersimpan di perangkat
+            sendiri dengan SQLite. Saya bisa melihat pekerjaan yang saling
+            bergantung lewat Gantt dan membandingkan rencana dengan realisasi
+            lewat Kurva S.
+          </p>
+          <a href="https://github.com/widiru83">Buka profil GitHub saya →</a>
+        </article>
+
+        <article class="work">
+          <span class="kind">E-book · Kepemimpinan tim</span>
+          <h3 lang="en">The Delegation Playbook</h3>
+          <p>
+            Pekerjaan sudah dibagi, tapi kenapa semua keputusan masih kembali
+            ke meja kita? Buku ini berangkat dari pertanyaan itu. Saya membahas
+            cara menyepakati hasil, memberi ruang keputusan, dan memeriksa
+            kualitas tanpa harus ikut mengerjakan semuanya.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="judul-bekal">
+      <h2 id="judul-bekal">Bekal kerja saya</h2>
+
+      <dl class="skills">
+        <div>
+          <dt>Manajemen proyek &amp; keamanan</dt>
+          <dd>PMP® · Scrum · Google Cybersecurity</dd>
+        </div>
+        <div>
+          <dt>Pengembangan perangkat lunak</dt>
+          <dd>Java · Go · Python · JavaScript · Electron</dd>
+        </div>
+        <div>
+          <dt>Basis data &amp; lingkungan kerja</dt>
+          <dd>PostgreSQL · MySQL · Oracle · SQLite · Linux · Shell scripting</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="section" id="kontak" aria-labelledby="judul-kontak">
+      <h2 id="judul-kontak">Mari ngobrol</h2>
+
+      <div>
+        <p class="contact-copy">
+          Kalau sedang menghadapi persoalan proyek yang mirip, atau sudah
+          mencoba Project Desk dan punya masukan, sapa saya di LinkedIn.
+          Saya juga berbagi tulisan di Medium dan catatan singkat di Threads.
+        </p>
+
+        <nav class="social" aria-label="Profil Widi">
+          <a href="https://www.linkedin.com/in/widi-raspito-utomo-s-kom-pmp%C2%AE-8b479a31/">LinkedIn</a>
+          <a href="https://medium.com/@widi-raspito">Medium</a>
+          <a href="https://www.threads.com/@widiraspitoutomo">Threads</a>
+          <a href="https://github.com/widiru83">GitHub</a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer-row">
+    <span>© 2026 Widi Raspito Utomo · Widiru Studio</span>
+    <a href="#atas">Kembali ke atas ↑</a>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const picker = document.querySelector(".theme-picker");
+      const buttons = picker.querySelectorAll("[data-choice]");
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function updateButtons() {
+        const active = root.dataset.theme || (systemTheme.matches ? "black" : "white");
+
+        for (const button of buttons) {
+          button.setAttribute("aria-pressed", String(button.dataset.choice === active));
+        }
+      }
+
+      for (const button of buttons) {
+        button.addEventListener("click", () => {
+          const choice = button.dataset.choice;
+          root.dataset.theme = choice;
+          updateButtons();
+
+          try {
+            localStorage.setItem("widiru-theme", choice);
+          } catch {
+            // Pilihan tetap berlaku di halaman ini jika penyimpanan dibatasi.
+          }
+        });
+      }
+
+      updateButtons();
+      picker.hidden = false;
+      systemTheme.addEventListener("change", updateButtons);
+    })();
+  </script>
 </body>
 </html>
